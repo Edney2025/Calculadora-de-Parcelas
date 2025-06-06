@@ -1,4 +1,4 @@
-/* Estilos gerais */
+/* Estilos gerais do seu CSS anterior */
 * {
     margin: 0;
     padding: 0;
@@ -56,7 +56,7 @@ header {
     margin-top: 20px;
 }
 
-.progress-step {
+.progress-step { /* Usando a sua classe */
     width: 30px;
     height: 30px;
     border-radius: 50%;
@@ -77,6 +77,7 @@ header {
 .progress-step.completed {
     background-color: #28a745;
     border-color: #28a745;
+    /* JS will set textContent to '✓' */
 }
 
 .screen {
@@ -115,7 +116,7 @@ h3 i {
     color: #17a2b8;
 }
 
-.form-group {
+.form-group { /* Usando a sua classe */
     margin-bottom: 20px;
 }
 
@@ -149,7 +150,8 @@ input[type="text"]#clientCpf::placeholder {
     color: #adb5bd;
 }
 
-.btn-next, .btn-prev, .btn-add, .btn-send, .btn-restart, .btn-action {
+/* Buttons */
+.btn-next, .btn-prev, .btn-add, .btn-send, .btn-restart, .btn-action { /* Usando as suas classes */
     padding: 10px 22px;
     border: 1px solid transparent;
     border-radius: 6px;
@@ -159,6 +161,10 @@ input[type="text"]#clientCpf::placeholder {
     transition: all 0.2s ease-in-out;
     margin-top: 15px;
     text-align: center;
+    display: inline-flex; /* Garante que ícones funcionem bem */
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
 }
 .btn-next, .btn-send, .btn-action {
     background-color: #007bff;
@@ -185,15 +191,17 @@ input[type="text"]#clientCpf::placeholder {
 .btn-add {
     background-color: #28a745;
     color: white;
-    display: inline-block;
+    display: inline-flex; /* Use inline-flex */
     width: auto;
     padding: 8px 15px;
     font-size: 14px;
+    gap: 5px; /* Ajusta gap para botões menores */
 }
 .btn-add.small-btn {
     padding: 6px 12px;
     font-size: 13px;
     margin-top: 10px;
+    gap: 4px;
 }
 .btn-add:hover {
     background-color: #1e7e34;
@@ -204,6 +212,8 @@ input[type="text"]#clientCpf::placeholder {
     display: block;
     width: 100%;
     margin-top: 10px;
+    /* Remover float se existir para display: block */
+    float: none;
 }
 .btn-restart:hover {
     background-color: #545b62;
@@ -217,8 +227,9 @@ button:disabled, .btn-next:disabled, .btn-send:disabled, .btn-action:disabled, .
     transform: none !important;
 }
 .whatsapp-btn i {
-    margin-right: 8px;
+    margin-right: 0; /* Gap handles spacing */
 }
+
 
 .product-section, .warranty-section, .entry-section, .installment-section, .product-list-section {
     margin-bottom: 30px;
@@ -228,7 +239,7 @@ button:disabled, .btn-next:disabled, .btn-send:disabled, .btn-action:disabled, .
     border: 1px solid #e9ecef;
 }
 
-.visor-area {
+.visor-area { /* Usando a sua classe */
     min-height: 50px;
     background-color: #fff;
     border: 1px solid #dee2e6;
@@ -270,7 +281,7 @@ button:disabled, .btn-next:disabled, .btn-send:disabled, .btn-action:disabled, .
     color: #c82333;
 }
 
-.total-box {
+.total-box { /* Usando a sua classe */
     margin-top: 10px;
     padding: 12px;
     background-color: #e9ecef;
@@ -280,8 +291,11 @@ button:disabled, .btn-next:disabled, .btn-send:disabled, .btn-action:disabled, .
     font-weight: bold;
     color: #343a40;
 }
+.total-box p { margin: 0; } /* Ajuste para seu HTML */
+.total-box span { color: #0056b3; } /* Cor do total */
 
-.info-box {
+
+.info-box { /* Usando a sua classe */
     margin: 15px 0;
     padding: 15px;
     background-color: #e6f7ff;
@@ -291,6 +305,8 @@ button:disabled, .btn-next:disabled, .btn-send:disabled, .btn-action:disabled, .
 }
 .info-box p { margin-bottom: 6px; }
 .info-box p:last-child { margin-bottom: 0; }
+.info-box strong { color: #0056b3; } /* Cor para strong dentro do info-box */
+
 
 .small-text {
     font-size: 0.85em;
@@ -299,7 +315,7 @@ button:disabled, .btn-next:disabled, .btn-send:disabled, .btn-action:disabled, .
     margin-bottom: 15px;
 }
 
-.option-item {
+.option-item { /* Usando a sua classe */
     padding: 12px 15px;
     margin-bottom: 8px;
     border: 1px solid #ced4da;
@@ -309,6 +325,7 @@ button:disabled, .btn-next:disabled, .btn-send:disabled, .btn-action:disabled, .
     display: flex;
     align-items: center;
     background-color: #fff;
+    user-select: none; /* Added for better usability */
 }
 .option-item:hover {
     border-color: #007bff;
@@ -322,16 +339,19 @@ button:disabled, .btn-next:disabled, .btn-send:disabled, .btn-action:disabled, .
 .option-item input[type="radio"] {
     margin-right: 10px;
     accent-color: #007bff;
-    width: auto;
+    width: auto; /* Override 100% width */
+    display: none; /* Hide the actual radio button */
 }
 .option-item label {
     margin-bottom: 0;
     font-weight: normal;
     font-size: 15px;
     color: #333;
+    flex-grow: 1; /* Allow label to take available space */
+    cursor: pointer; /* Ensure label is clickable */
 }
 
-.horizontal-options {
+.horizontal-options { /* Usando a sua classe */
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
@@ -345,7 +365,7 @@ button:disabled, .btn-next:disabled, .btn-send:disabled, .btn-action:disabled, .
 .horizontal-options .option-item label {
     font-size: 14px;
 }
-.payment-day-options .option-item {
+.payment-day-options .option-item { /* Usando a sua classe */
     min-width: auto;
     flex-basis: calc(20% - 10px); /* Aproximadamente 5 colunas, ajustando para o gap */
     flex-grow: 1; /* Permite que cresçam para preencher o espaço se houver menos de 5 */
@@ -358,7 +378,7 @@ button:disabled, .btn-next:disabled, .btn-send:disabled, .btn-action:disabled, .
     font-size: 13px;
 }
 
-.vertical-options .option-item {
+.vertical-options .option-item { /* Usando a sua classe */
     justify-content: flex-start;
 }
 .entry-options .entry-value-placeholder {
@@ -368,13 +388,13 @@ button:disabled, .btn-next:disabled, .btn-send:disabled, .btn-action:disabled, .
 }
 
 
-.installment-options-grid {
+.installment-options-grid { /* Usando a sua classe */
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 12px;
     margin-top: 15px;
 }
-.installment-option-card {
+.installment-option-card { /* Usando a sua classe */
     padding: 12px;
     border: 1px solid #ced4da;
     border-radius: 8px;
@@ -406,13 +426,13 @@ button:disabled, .btn-next:disabled, .btn-send:disabled, .btn-action:disabled, .
     font-weight: 500;
 }
 
-.summary-container {
+.summary-container { /* Usando a sua classe */
     border: 1px solid #dee2e6;
     border-radius: 8px;
     padding: 20px;
     background-color: #f8f9fa;
 }
-.summary-section {
+.summary-section { /* Usando a sua classe */
     margin-bottom: 20px;
     padding-bottom: 15px;
     border-bottom: 1px dashed #ced4da;
@@ -422,7 +442,7 @@ button:disabled, .btn-next:disabled, .btn-send:disabled, .btn-action:disabled, .
     margin-bottom: 0;
     padding-bottom: 0;
 }
-.summary-section h4 {
+.summary-section h4 { /* Usando a sua classe */
     font-size: 17px;
     color: #007bff;
     margin-bottom: 10px;
@@ -430,7 +450,10 @@ button:disabled, .btn-next:disabled, .btn-send:disabled, .btn-action:disabled, .
     align-items: center;
     gap: 8px;
 }
-.summary-section p {
+.summary-section h4 i { /* Usando a sua classe */
+    color: #007bff; /* Mantendo a cor consistente */
+}
+.summary-section p { /* Usando a sua classe */
     font-size: 15px;
     margin-bottom: 5px;
     color: #495057;
@@ -445,7 +468,7 @@ button:disabled, .btn-next:disabled, .btn-send:disabled, .btn-action:disabled, .
     line-height: 1.4;
 }
 
-#productSearchArea {
+#productSearchArea { /* Usando a sua classe */
     padding: 15px;
     border: 1px solid #eee;
     border-radius: 6px;
@@ -456,7 +479,7 @@ button:disabled, .btn-next:disabled, .btn-send:disabled, .btn-action:disabled, .
     margin-top: 0;
     font-size: 16px;
 }
-#productFetchDisplay {
+#productFetchDisplay { /* Usando a sua classe + ajuste */
     margin-top:15px;
     padding:15px;
     background-color:#f0f8ff;
@@ -470,7 +493,7 @@ button:disabled, .btn-next:disabled, .btn-send:disabled, .btn-action:disabled, .
 #productFetchDisplay strong {
     color: #0056b3;
 }
-.success-feedback {
+.success-feedback { /* Usando a sua classe */
     color: #155724;
     background-color: #d4edda;
     border: 1px solid #c3e6cb;
@@ -481,6 +504,15 @@ button:disabled, .btn-next:disabled, .btn-send:disabled, .btn-action:disabled, .
     margin-top: 10px;
     font-size: 14px;
 }
+/* Mensagem de erro geral, para a modal ou validações futuras */
+.error-message {
+    color: #dc3545;
+    font-weight: 500;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+
 #whatsappMessageFinal {
     width: 100%;
     font-family: monospace;
@@ -493,6 +525,7 @@ button:disabled, .btn-next:disabled, .btn-send:disabled, .btn-action:disabled, .
     min-height: 200px;
     font-size: 13px;
     line-height: 1.5;
+    resize: vertical;
 }
 
 .screen::after {
@@ -501,6 +534,7 @@ button:disabled, .btn-next:disabled, .btn-send:disabled, .btn-action:disabled, .
     display: table;
 }
 
+/* Botões de navegação posicionamento (do seu CSS) */
 #screen1 .btn-next,
 #screen2 .btn-prev, #screen2 .btn-next,
 #screen3 .btn-prev, #screen3 .btn-next,
@@ -509,11 +543,220 @@ button:disabled, .btn-next:disabled, .btn-send:disabled, .btn-action:disabled, .
     margin-top: 25px;
 }
 
+#screen5 .btn-restart {
+     /* Sobrescreve o float:right/left */
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: 100%;
+}
+
+#screen5 .btn-send.whatsapp-btn {
+    background-color: #25D366;
+    float: none; /* Remover float */
+    display: block; /* Ocupar largura total */
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 15px; /* Espaço entre botões */
+}
+#screen5 .btn-send.whatsapp-btn:hover {
+    background-color: #1fbd58;
+}
+#screen5 .btn-prev {
+    float: none; /* Remover float */
+    display: block; /* Ocupar largura total */
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 15px;
+}
+
+
+/* === Modal Styles (Added for Configuration) === */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top, ensure it's above everything */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
+    padding-top: 60px; /* Location of the box */
+    animation: fadeInModal 0.3s ease-out;
+}
+@keyframes fadeInModal {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto; /* 15% from the top and centered */
+    padding: 25px;
+    border: 1px solid #888;
+    width: 90%; /* Could be more responsive */
+    max-width: 500px; /* Max width */
+    border-radius: 8px;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    animation: slideInModal 0.4s ease-out;
+}
+@keyframes slideInModal {
+    from { transform: translateY(-50px); opacity: 0;}
+    to { transform: translateY(0); opacity: 1; }
+}
+
+
+.close-button {
+    color: #aaa;
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #777;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#configModal h2 {
+     margin-top: 0;
+     margin-bottom: 20px;
+     border-bottom: none; /* Remove border from modal title */
+     padding-bottom: 0;
+     font-size: 22px;
+}
+#configModal h2 i {
+     color: #17a2b8; /* Use info color for settings icon */
+}
+
+
+#passwordArea {
+     margin-bottom: 20px;
+     text-align: center; /* Center items */
+}
+#passwordArea label {
+     display: inline-block; /* Align label */
+     margin-right: 10px;
+     margin-bottom: 0; /* Remove bottom margin */
+     font-weight: normal;
+     color: #333;
+     vertical-align: middle; /* Align vertically */
+}
+#passwordArea input {
+     width: calc(70% - 80px); /* Adjust based on button width + margin */
+     margin-right: 10px;
+     display: inline-block;
+     vertical-align: middle; /* Align with button */
+     max-width: 150px; /* Limit input width */
+}
+#passwordArea button {
+     width: 80px; /* Fixed width for button */
+     padding: 10px 5px;
+     font-size: 1em;
+     vertical-align: middle; /* Align vertically */
+}
+#passwordArea .error-message {
+    text-align: left; /* Align error message text */
+    margin-top: 10px;
+    margin-bottom: 0;
+    display: block; /* Show error message on its own line */
+}
+
+
+#ratesArea p {
+     font-size: 0.9em;
+     color: #6c757d;
+     margin-bottom: 15px;
+     font-style: italic;
+}
+
+.rate-input-group {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.rate-input-group label {
+    flex-basis: 60%; /* Give label more space */
+    margin-bottom: 0;
+    font-weight: normal; /* Less bold than general labels */
+    color: #495057;
+    font-size: 15px;
+}
+
+.rate-input-group input {
+    flex-basis: 40%; /* Give input less space */
+    max-width: 100px; /* Prevent input from getting too wide */
+    text-align: right;
+    padding: 8px;
+    font-size: 15px;
+}
+
+#ratesArea button {
+     width: auto; /* Auto width for save button */
+     padding: 10px 20px;
+     margin-top: 10px;
+     display: block; /* Full width button */
+     margin-left: auto;
+     margin-right: auto;
+}
+
+.btn-config { /* Added for configuration button */
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 55px; /* Slightly larger */
+    height: 55px;
+    border-radius: 50%;
+    font-size: 1.6em; /* Slightly larger icon */
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    z-index: 999; /* Below modal, above content */
+    background-color: #17a2b8; /* Info color */
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+.btn-config:hover {
+     background-color: #138496;
+     box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+     transform: translateY(-1px);
+}
+
+
+/* Responsive adjustments */
 @media (max-width: 768px) {
     .container { padding: 20px 20px; }
-     .payment-day-options {
+     /* Payment day options grid */
+    .payment-day-options {
         grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); /* Ajuste para telas médias */
     }
+     .modal-content {
+         width: 95%;
+         margin: 10% auto;
+         padding: 20px;
+     }
+      #passwordArea input {
+          width: calc(70% - 80px);
+          max-width: 120px; /* Adjusted max width */
+     }
 }
 
 @media (max-width: 600px) {
@@ -524,27 +767,48 @@ button:disabled, .btn-next:disabled, .btn-send:disabled, .btn-action:disabled, .
         border: none;
         min-height: 100vh;
         margin:0;
+        box-shadow: none; /* Remove box shadow on full screen mobile */
     }
     .logo { font-size: 22px; }
     .logo i { font-size: 28px; }
     h2 { font-size: 20px; }
+    h3 { font-size: 17px; }
 
+    /* Botões de navegação em mobile */
     .btn-next, .btn-prev, .btn-send, .btn-action, .btn-restart {
         width: 100%;
-        margin-bottom: 12px;
-        float: none;
+        margin-bottom: 10px; /* Adjusted margin */
+        float: none; /* Important */
+        display: block; /* Important */
+        margin-left: auto;
+        margin-right: auto;
     }
-    .btn-prev { margin-top: 5px; }
+    #screen2 .btn-prev, #screen3 .btn-prev, #screen4 .btn-prev {
+        margin-top: 15px; /* Match other buttons */
+    }
+    #screen5 .btn-prev, #screen5 .btn-send, #screen5 .btn-restart {
+        margin-top: 15px; /* Match other buttons */
+    }
+     #screen5 .btn-restart {
+         margin-top: 0; /* Less space between buttons */
+         margin-bottom: 10px;
+     }
+      #screen5 .btn-send.whatsapp-btn {
+         margin-bottom: 10px;
+     }
 
+
+    /* Opções horizontal em mobile */
     .horizontal-options {
         flex-direction: column;
         gap: 8px;
     }
     .horizontal-options .option-item {
         min-width: 100%;
-        margin-bottom: 0; /* Gap cuida se não for flex-direction: column */
+        margin-bottom: 0; /* Redundant with gap */
     }
-     /* Para dias de pagamento, manter grid mas ajustar minmax */
+
+    /* Payment day options, keeping grid */
     .payment-day-options {
         display: grid; /* Garante que é grid */
         grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
@@ -553,26 +817,65 @@ button:disabled, .btn-next:disabled, .btn-send:disabled, .btn-action:disabled, .
     }
      .payment-day-options .option-item {
         min-width: auto; /* Deixa o grid controlar */
-        margin-bottom: 0; /* Se for grid, gap cuida */
+        margin-bottom: 0; /* If grid, gap handles */
     }
 
 
+    /* Installment grid in mobile */
     .installment-options-grid {
         grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
         gap: 10px;
     }
+
+    /* Modal in mobile */
+     .modal-content {
+         padding: 15px;
+     }
+      #passwordArea input {
+          width: calc(80% - 70px); /* Adjust width */
+          max-width: 100px;
+          margin-right: 5px;
+          padding: 8px;
+     }
+      #passwordArea button {
+          width: 65px; /* Adjusted button width */
+           padding: 8px 4px;
+           font-size: 0.9em;
+     }
+      .rate-input-group {
+         flex-direction: column;
+         align-items: flex-start;
+         gap: 5px;
+     }
+     .rate-input-group label,
+     .rate-input-group input {
+         flex-basis: auto;
+         width: 100%; /* Make input fill space */
+         max-width: none; /* Remove max width constraint */
+         font-size: 14px;
+     }
+     #ratesArea button {
+         padding: 10px 15px;
+         font-size: 1em;
+     }
 }
 
 @media (max-width: 480px) {
     .installment-options-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* One column on very small screens */
     }
     .payment-day-options {
-        grid-template-columns: repeat(auto-fill, minmax(75px, 1fr)); /* Ainda menor */
+        grid-template-columns: repeat(auto-fill, minmax(70px, 1fr)); /* Even smaller */
+        gap: 6px;
     }
     .container { padding: 15px 10px; }
     h2 { font-size: 18px; }
     label { font-size: 14px; }
-    input, select, textarea { font-size: 15px; padding: 8px 12px;}
-    .btn-next, .btn-prev, .btn-send, .btn-action, .btn-restart { font-size: 15px; padding: 9px 18px; }
+    input, select, textarea { font-size: 14px; padding: 8px 10px;}
+    .btn-next, .btn-prev, .btn-send, .btn-action, .btn-restart { font-size: 15px; padding: 9px 15px; }
+     .btn-config {
+          width: 50px;
+          height: 50px;
+          font-size: 1.4em;
+     }
 }
