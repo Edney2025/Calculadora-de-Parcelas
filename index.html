@@ -61,15 +61,15 @@
                         <label for="productSku">SKU do produto:</label>
                         <input type="text" id="productSku" placeholder="Digite o SKU">
                     </div>
-                    <button type="button" class="btn-action" id="btnFetchProduct" onclick="fetchProductBySku()">
+                    <button type="button" class="btn-action" id="btnFetchProduct">
                         <i class="fas fa-search"></i> Buscar
                     </button>
-                    <div id="productFetchDisplay" style="display:none;">
+                    <div id="productFetchDisplay" class="info-box" style="display:none;">
                         <p><strong>Produto:</strong> <span id="fetchedProductNameDisplay"></span></p>
                         <p><strong>Preço:</strong> R$ <span id="fetchedProductPriceDisplay"></span></p>
                         <input type="hidden" id="productNameHidden">
                         <input type="hidden" id="productValueHidden">
-                        <button type="button" class="btn-add small-btn" onclick="addProductToListAndClearSearch()" id="btnAddProductToList" disabled>
+                        <button type="button" class="btn-add small-btn" id="btnAddProductToList" disabled>
                             <i class="fas fa-check-circle"></i> Adicionar à Lista
                         </button>
                     </div>
@@ -96,23 +96,23 @@
             <div class="entry-section">
                 <p class="small-text">Selecione uma opção de entrada ou informe um valor personalizado.</p>
                 <div class="entry-options vertical-options">
-                    <div class="option-item" onclick="selectEntryOption('none', this)">
+                    <div class="option-item">
                         <input type="radio" name="entryOption" id="entryOptNone" value="none" checked>
                         <label for="entryOptNone">Sem Entrada</label>
                     </div>
-                    <div class="option-item" onclick="selectEntryOption('10', this)">
+                    <div class="option-item">
                         <input type="radio" name="entryOption" id="entryOpt10" value="10">
                         <label for="entryOpt10">Entrada de <span class="entry-value-placeholder" data-pct="0.10">R$ 0.00</span></label>
                     </div>
-                    <div class="option-item" onclick="selectEntryOption('20', this)">
+                    <div class="option-item">
                         <input type="radio" name="entryOption" id="entryOpt20" value="20">
                         <label for="entryOpt20">Entrada de <span class="entry-value-placeholder" data-pct="0.20">R$ 0.00</span></label>
                     </div>
-                    <div class="option-item" onclick="selectEntryOption('30', this)">
+                    <div class="option-item">
                         <input type="radio" name="entryOption" id="entryOpt30" value="30">
                         <label for="entryOpt30">Entrada de <span class="entry-value-placeholder" data-pct="0.30">R$ 0.00</span></label>
                     </div>
-                    <div class="option-item" onclick="selectEntryOption('custom', this)">
+                    <div class="option-item">
                         <input type="radio" name="entryOption" id="entryOptCustom" value="custom">
                         <label for="entryOptCustom">Entrada Personalizada</label>
                     </div>
@@ -139,19 +139,19 @@
                 <h3><i class="fas fa-user-shield"></i> Garantia Estendida (Opcional)</h3>
                 <p class="small-text">A seleção da garantia ajustará o valor das parcelas.</p>
                 <div class="warranty-options horizontal-options">
-                    <div class="option-item" onclick="selectWarrantyOption('none', this)">
+                    <div class="option-item">
                         <input type="radio" name="warrantyOption" id="warrantyOptNone" value="none" checked> <label for="warrantyOptNone">Sem</label>
                     </div>
-                    <div class="option-item" onclick="selectWarrantyOption('6', this)">
+                    <div class="option-item">
                         <input type="radio" name="warrantyOption" id="warrantyOpt6" value="6"> <label for="warrantyOpt6">6 meses</label>
                     </div>
-                    <div class="option-item" onclick="selectWarrantyOption('12', this)">
+                    <div class="option-item">
                         <input type="radio" name="warrantyOption" id="warrantyOpt12" value="12"> <label for="warrantyOpt12">12 meses</label>
                     </div>
-                    <div class="option-item" onclick="selectWarrantyOption('18', this)">
+                    <div class="option-item">
                         <input type="radio" name="warrantyOption" id="warrantyOpt18" value="18"> <label for="warrantyOpt18">18 meses</label>
                     </div>
-                    <div class="option-item" onclick="selectWarrantyOption('24', this)">
+                    <div class="option-item">
                         <input type="radio" name="warrantyOption" id="warrantyOpt24" value="24"> <label for="warrantyOpt24">24 meses</label>
                     </div>
                 </div>
@@ -174,7 +174,7 @@
         <!-- Tela 5: Resumo e Envio -->
         <div class="screen" id="screen5">
             <h2><i class="fas fa-file-alt"></i> Resumo da Simulação</h2>
-            
+
             <!-- Resumo para o Operador (será ocultado após envio) -->
             <div class="summary-container" id="operatorSummaryContainer">
                 <div class="summary-section">
@@ -191,30 +191,84 @@
                 </div>
                 <div class="summary-section">
                     <h4><i class="fas fa-wallet"></i> Financeiro</h4>
-                    <p><strong>Entrada:</strong> R$ <span id="summaryEntryAmount"></span> (<span id="summaryEntryPercentage"></span>%)</p>
-                    <p><strong>Valor Financiado (base para cálculo):</strong> R$ <span id="summaryAmountFinancedInternal"></span></p>
-                    <p><strong>Parcelamento:</strong> <span id="summaryInstallmentMonths"></span>x de R$ <span id="summaryInstallmentValue"></span></p>
-                    <p><strong>Total Aproximado Pago no Carnê:</strong> R$ <span id="summaryTotalPaidCarnet"></span></p>
-                    <p><strong>1ª Parcela:</strong> <span id="summaryFirstInstallmentDate"></span></p>
-                    <p><strong>Última Parcela:</strong> <span id="summaryLastInstallmentDate"></span></p>
+                    <!-- These spans will be populated or section hidden if no financing -->
+                    <p><strong>Entrada:</strong> <span id="summaryEntryAmount">R$ 0.00</span> (<span id="summaryEntryPercentage">0.0%</span>)</p>
+                    <p><strong>Valor Financiado (base para cálculo):</strong> <span id="summaryAmountFinancedInternal">R$ 0.00</span></p>
+                    <div id="financingSummaryDetails"> <!-- Show/Hide this div based on financing -->
+                        <p><strong>Parcelamento:</strong> <span id="summaryInstallmentMonths"></span>x de <span id="summaryInstallmentValue"></span></p>
+                        <p><strong>Total Aproximado Pago no Carnê:</strong> <span id="summaryTotalPaidCarnet"></span></p>
+                        <p><strong>1ª Parcela:</strong> <span id="summaryFirstInstallmentDate"></span></p>
+                        <p><strong>Última Parcela:</strong> <span id="summaryLastInstallmentDate"></span></p>
+                    </div>
+                    <div id="noFinancingSummaryMessage" class="info-box" style="display: none;">
+                         <!-- Message if no financing is needed or possible -->
+                    </div>
                 </div>
             </div>
 
             <!-- Textarea para a mensagem do WhatsApp (será ocultado após envio) -->
             <textarea id="whatsappMessageFinal" rows="15" readonly></textarea>
-            
+
             <!-- Mensagem de Feedback Pós-Envio (inicia oculta) -->
             <div id="onScreenFeedbackMessage" class="info-box" style="display:none; margin-top: 20px; text-align: left; white-space: pre-wrap;">
                 <!-- Conteúdo preenchido pelo JS -->
             </div>
 
-            <button type="button" class="btn-send whatsapp-btn" id="sendWppButton" onclick="sendWhatsAppMessage()">
+            <button type="button" class="btn-send whatsapp-btn" id="sendWppButton">
                 <i class="fab fa-whatsapp"></i> Enviar Simulação por WhatsApp
             </button>
             <button type="button" class="btn-prev" id="prevButtonScreen5" onclick="prevScreen(5)">Voltar</button>
             <button type="button" class="btn-restart" onclick="restartSimulation()">Nova Simulação</button>
         </div>
     </div>
+
+    <!-- Configuration Modal -->
+    <div id="configModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeConfigModal()">×</span>
+            <h2><i class="fas fa-cogs"></i> Configurar Taxas Mensais</h2>
+            <div id="passwordArea">
+                <label for="configPassword">Senha:</label>
+                <input type="password" id="configPassword">
+                <button onclick="checkPassword()">Entrar</button>
+                <p id="passwordError" class="error-message" style="display: none;"></p>
+            </div>
+            <div id="ratesArea" style="display: none;">
+                <p>Insira as taxas *mensais* como decimal (ex: 0.02 para 2%, 0.14 para 14%)</p>
+                <div class="rate-input-group">
+                    <label for="rateNoEntry">Sem Entrada (< 10% efetiva):</label>
+                    <input type="number" id="rateNoEntry" step="0.0001">
+                </div>
+                <div class="rate-input-group">
+                     <label for="rateEntry10pct">Entrada 10% a < 20% efetiva:</label>
+                     <input type="number" id="rateEntry10pct" step="0.0001">
+                </div>
+                 <div class="rate-input-group">
+                     <label for="rateEntry20pct">Entrada 20% a < 30% efetiva:</label>
+                     <input type="number" id="rateEntry20pct" step="0.0001">
+                </div>
+                 <div class="rate-input-group">
+                     <label for="rateEntry30pct">Entrada 30% a < 40% efetiva:</label>
+                     <input type="number" id="rateEntry30pct" step="0.0001">
+                </div>
+                 <div class="rate-input-group">
+                     <label for="rateEntry40pct">Entrada 40% a < 50% efetiva:</label>
+                     <input type="number" id="rateEntry40pct" step="0.0001">
+                </div>
+                 <div class="rate-input-group">
+                     <label for="rateEntry50plus">Entrada 50%+ efetiva:</label>
+                     <input type="number" id="rateEntry50plus" step="0.0001">
+                </div>
+                <button onclick="saveRates()">Salvar Taxas</button>
+            </div>
+        </div>
+    </div>
+
+    <button id="openConfigBtn" class="btn-config" title="Configurações de Taxas">
+        <i class="fas fa-cogs"></i>
+    </button>
+
+
     <script src="script.js"></script>
 </body>
 </html>
